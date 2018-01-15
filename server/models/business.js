@@ -10,11 +10,11 @@ var Sequelize = require('sequelize'),
 
 // 1: The model schema.
 var modelDefinition = {
-    userId: { type: Sequelize.STRING},
+    userId: { type: Sequelize.STRING, unique: true },
     directory: { type: Sequelize.STRING },
     gravatar: { type: Sequelize.TEXT},
-    officeName: { type: Sequelize.STRING, allowNull: false },
-    otherNames: { type: Sequelize.STRING, allowNull: false },
+    officeName: { type: Sequelize.STRING },
+    otherNames: { type: Sequelize.STRING },
     dateOfBirth: { type: Sequelize.STRING },
     gender: { type: Sequelize.STRING },
     maritalStatus: { type: Sequelize.STRING },
