@@ -32,6 +32,17 @@ utilGenerator.generateTransId = function () {
   return id;
 }
 
+utilGenerator.generateFindMeId = function () {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+  for (var i = 0; i < 8; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  var id = text;
+  return id;
+}
+
+
 utilGenerator.sendRegisterSms = function (user, payload) {
   setTimeout(function () {
     var message = "Hi" + user.username + "Thank you for signing up with payoutlet v2";

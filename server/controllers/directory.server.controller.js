@@ -6,6 +6,7 @@
 var config = require('../config'),
   request = require('request'),
   db = require('../models/database'),
+  util = require('../utils/utils'),
   Directory = require('../models/directory'),
   Business = require('../models/business'),
   DirectoryController = {};
@@ -87,6 +88,8 @@ DirectoryController.createBusiness = function (req, res) {
     db.sync().then(function () {
       var newPost = {
         userId: req.body.userId,
+        findMeId: util.generateFindMeId(),
+        group: req.body.group,
         directory: req.body.directory,
         gravatar: req.body.gravatar,
         officeName: req.body.officeName,
@@ -97,6 +100,8 @@ DirectoryController.createBusiness = function (req, res) {
         email: req.body.email,    
         homeTown: req.body.homeTown,      
         position: req.body.position,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude,
         geolocation: req.body.geolocation,
         websiteUrl: req.body.websiteUrl,
         fileUpload: req.body.fileUpload

@@ -10,7 +10,9 @@ var Sequelize = require('sequelize'),
 
 // 1: The model schema.
 var modelDefinition = {
-    userId: { type: Sequelize.STRING, unique: true },
+    userId: { type: Sequelize.STRING, unique: false },
+    findMeId: { type: Sequelize.STRING, unique: true},
+    group: { type: Sequelize.STRING },
     directory: { type: Sequelize.STRING },
     gravatar: { type: Sequelize.TEXT},
     officeName: { type: Sequelize.STRING },
@@ -24,15 +26,17 @@ var modelDefinition = {
     region: { type: Sequelize.STRING },
     landSize: { type: Sequelize.STRING },
     homeTown: { type: Sequelize.STRING },
+    latitude: { type: Sequelize.TEXT},
+    longitude: { type: Sequelize.TEXT},
     geolocation: { type: Sequelize.TEXT},
     product: { type: Sequelize.TEXT },
     service: { type: Sequelize.TEXT },
     otherInfo: { type: Sequelize.TEXT },
     position: { type: Sequelize.STRING},
     websiteUrl: { type: Sequelize.STRING},
-    fileUpload: { type: Sequelize.STRING},
-    blocked: { type: Sequelize.STRING,defaultValue: 'active'}
-
+    fileUpload: { type: Sequelize.TEXT},
+    verified: { type: Sequelize.STRING, defaultValue: 'false'},
+    blocked: { type: Sequelize.STRING, defaultValue: 'active'}
 };
 
 // 2: The model options.

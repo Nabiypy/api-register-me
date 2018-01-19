@@ -4,6 +4,7 @@
 var nodemailer = require('nodemailer'),
     config = module.exports;
 
+
 config.db = {
   user: 'areash5_peprah',
   password: 'digimas14',
