@@ -1,12 +1,17 @@
 /**
  * Created by hanso on 12/01/2018.
  */
-
 'use strict';
 var config = require('../config'),
   request = require('request'),
   db = require('../models/database'),
   util = require('../utils/utils'),
+  _ = require('lodash'),
+  async = require('async'),
+  forEach = require('async-foreach').forEach,
+  geocoder = require('local-reverse-geocoder'),
+  NodeGeocoder = require('node-geocoder'),
+  geocoding = new require('reverse-geocoding'),
   Directory = require('../models/directory'),
   Business = require('../models/business'),
   DirectoryController = {};
@@ -82,13 +87,46 @@ DirectoryController.removeDirectory = function (req, res) {
 }
 
 DirectoryController.createBusiness = function (req, res) {
-    var body = req.body;
+    var body = req.body,
+        geodata= '';
     console.log("create Business post request >>>", body);
-  
+    var options = {
+      method: 'GET',
+      url: 'https://maps.googleapis.com/maps/api/geocode/json',
+      qs: { 
+        latlng: req.body.latitude +','+req.body.longitude,
+        key: 'AIzaSyAsQi8vzHfqrt33xQww77MN1Bg84iLSeOM'
+      },
+      json: true,
+   };
+
+    request(options, function(error, response, body) {
+      console.log('options', options);
+      if (error) throw new Error(error);
+     
+      // console.log('reverse geocoding >>>', body);
+      var formatted_address = body.results[0];
+      // console.log('formatted address =', formatted_address);
+      geodata = formatted_address.formatted_address
+      console.log('formatted address =>> ', geodata);
+      Business.update(
+        {
+          geolocation: geodata
+        }, {
+          where: {
+            officeName: {
+              $like: req.body.officeName
+            }
+          }
+        }
+      );
+
+   });
+
     db.sync().then(function () {
       var newPost = {
         userId: req.body.userId,
-        findMeId: util.generateFindMeId(),
+        findMeId: req.body.findMeId,
         group: req.body.group,
         directory: req.body.directory,
         gravatar: req.body.gravatar,
@@ -102,7 +140,7 @@ DirectoryController.createBusiness = function (req, res) {
         position: req.body.position,
         latitude: req.body.latitude,
         longitude: req.body.longitude,
-        geolocation: req.body.geolocation,
+        geolocation: geodata,
         websiteUrl: req.body.websiteUrl,
         fileUpload: req.body.fileUpload
       };
@@ -127,6 +165,7 @@ DirectoryController.getBusinessess = function (req, res) {
         res.status(500).json(error);
     });
 }
+
 //get agent by id
 DirectoryController.getBusiness = function (req, res) {
     Business.findById(req.params.id)
@@ -151,6 +190,7 @@ DirectoryController.updateBusiness = (req, res) => {
         res.status(500).json(error);
     });
 }
+
   //delete agent post
 DirectoryController.removeBusiness = function (req, res) {
   Business.destroy({

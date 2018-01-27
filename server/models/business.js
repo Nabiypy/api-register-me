@@ -20,7 +20,7 @@ var modelDefinition = {
     dateOfBirth: { type: Sequelize.STRING },
     gender: { type: Sequelize.STRING },
     maritalStatus: { type: Sequelize.STRING },
-    mobile: { type: Sequelize.STRING, unique: true },
+    mobile: { type: Sequelize.STRING, unique: false },
     email: { type: Sequelize.STRING },
     education: {type: Sequelize.TEXT},
     region: { type: Sequelize.STRING },

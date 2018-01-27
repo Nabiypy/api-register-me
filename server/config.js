@@ -5,18 +5,29 @@ var nodemailer = require('nodemailer'),
     config = module.exports;
 
 
+// config.db = {
+//   user: 'areash5_peprah',
+//   password: 'digimas14',
+//   name: 'areash5_test-registerme-app'
+// };
+
+// config.db.details = {
+//   host: '172.81.119.95',
+//   port: 3306,
+//   dialect: 'mysql'
+// };
+
 config.db = {
-  user: 'areash5_peprah',
+  user: 'root',
   password: 'digimas14',
-  name: 'areash5_test-registerme-app'
+  name: 'register-me'
 };
 
 config.db.details = {
-  host: '172.81.119.95',
+  host: 'localhost',
   port: 3306,
   dialect: 'mysql'
 };
-
 
 config.db.production = {
   url: 'postgres://lbewwfjc:5y1kaCk-JnnhXKAhm4jNXw7arsgxaf6V@baasu.db.elephantsql.com:5432/lbewwfjc',
@@ -61,4 +72,13 @@ config.transporter = nodemailer.createTransport({
     pass: '#tr1nz13t'
   }
 });
+
+config.options = {
+  provider: 'google',
+  // Optional depending on the providers
+  httpAdapter: 'https', // Default
+  apiKey: 'AIzaSyAsQi8vzHfqrt33xQww77MN1Bg84iLSeOM', // for Mapquest, OpenCage, Google Premier
+  formatter: 'string'         // 'gpx', 'string', ...
+};
+
 
