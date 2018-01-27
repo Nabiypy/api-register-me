@@ -8,10 +8,6 @@ var config = require('../config'),
   util = require('../utils/utils'),
   _ = require('lodash'),
   async = require('async'),
-  forEach = require('async-foreach').forEach,
-  geocoder = require('local-reverse-geocoder'),
-  NodeGeocoder = require('node-geocoder'),
-  geocoding = new require('reverse-geocoding'),
   Directory = require('../models/directory'),
   Business = require('../models/business'),
   DirectoryController = {};
@@ -104,9 +100,7 @@ DirectoryController.createBusiness = function (req, res) {
       console.log('options', options);
       if (error) throw new Error(error);
      
-      // console.log('reverse geocoding >>>', body);
       var formatted_address = body.results[0];
-      // console.log('formatted address =', formatted_address);
       geodata = formatted_address.formatted_address
       console.log('formatted address =>> ', geodata);
       Business.update(
