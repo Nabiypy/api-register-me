@@ -14,7 +14,7 @@ var modelDefinition = {
     findMeId: { type: Sequelize.STRING, unique: true},
     group: { type: Sequelize.STRING },
     directory: { type: Sequelize.STRING },
-    gravatar: { type: Sequelize.TEXT},
+    gravatar: { type: Sequelize.BLOB('long')},
     officeName: { type: Sequelize.STRING },
     otherNames: { type: Sequelize.STRING },
     dateOfBirth: { type: Sequelize.STRING },
@@ -34,7 +34,7 @@ var modelDefinition = {
     otherInfo: { type: Sequelize.TEXT },
     position: { type: Sequelize.STRING},
     websiteUrl: { type: Sequelize.STRING},
-    fileUpload: { type: Sequelize.TEXT},
+    fileUpload: { type: Sequelize.BLOB('long')},
     verified: { type: Sequelize.STRING, defaultValue: 'false'},
     blocked: { type: Sequelize.STRING, defaultValue: 'active'}
 };
