@@ -11,12 +11,15 @@ var modelDefinition = {
   email:{
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false
   },
   username: {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false
+  },
+  findMeId: {
+    type: Sequelize.STRING,
+    unique: true,
   },
   mobile:{
     type: Sequelize.STRING,
@@ -26,9 +29,7 @@ var modelDefinition = {
     type: Sequelize.STRING,
     allowNull: false
   },
-  gravatar: {
-    type: Sequelize.TEXT
-  },
+  gravatar: { type: Sequelize.BLOB('long')},
   cardWallet: {
     type: Sequelize.STRING,
     unique: true,
@@ -40,12 +41,15 @@ var modelDefinition = {
   bio: {
     type: Sequelize.TEXT
   },
-  item: {
-    type: Sequelize.INTEGER
+  position: {
+    type: Sequelize.STRING
   },
-  paid:{
-    type: Sequelize.DECIMAL
+  homeTown:{
+    type: Sequelize.STRING
   },
+  latitude: { type: Sequelize.TEXT},
+  longitude: { type: Sequelize.TEXT},
+  geolocation: { type: Sequelize.TEXT},
   role: {
     type: Sequelize.STRING,
     defaultValue: config.userRoles.user

@@ -130,7 +130,7 @@ DirectoryController.createBusiness = function (req, res) {
         maritalStatus: req.body.maritalStatus,
         mobile: req.body.mobile,
         email: req.body.email,    
-        homeTown: req.body.homeTown,      
+        homeTown: req.body.location,      
         position: req.body.position,
         latitude: req.body.latitude,
         longitude: req.body.longitude,
@@ -173,6 +173,7 @@ DirectoryController.getBusiness = function (req, res) {
 }
 
 DirectoryController.updateBusiness = (req, res) => {
+    console.log('update Business body >>>', req.body);
     Business.update(req.body, {
         where: { id: req.params.id }
     })
