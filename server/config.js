@@ -8,7 +8,7 @@ var nodemailer = require('nodemailer'),
 config.db = {
   user: 'areash5_peprah',
   password: 'digimas14',
-  name: 'areash5_beta-register-me'
+  name: 'areash5_test-registerme-app'
 };
 
 config.db.details = {
