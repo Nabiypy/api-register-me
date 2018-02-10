@@ -10,7 +10,7 @@ var Sequelize = require('sequelize'),
 
 // 1: The model schema.
 var modelDefinition = {
-    userId: { type: Sequelize.STRING, unique: false },
+    userId: { type: Sequelize.STRING, unique: true },
     findMeId: { type: Sequelize.STRING, unique: true},
     group: { type: Sequelize.STRING },
     directory: { type: Sequelize.STRING },
@@ -20,7 +20,7 @@ var modelDefinition = {
     dateOfBirth: { type: Sequelize.STRING },
     gender: { type: Sequelize.STRING },
     maritalStatus: { type: Sequelize.STRING },
-    mobile: { type: Sequelize.STRING, unique: false },
+    mobile: { type: Sequelize.STRING },
     email: { type: Sequelize.STRING },
     education: {type: Sequelize.TEXT},
     region: { type: Sequelize.STRING },

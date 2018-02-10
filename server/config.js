@@ -5,29 +5,29 @@ var nodemailer = require('nodemailer'),
     config = module.exports;
 
 
-config.db = {
-  user: 'areash5_peprah',
-  password: 'digimas14',
-  name: 'areash5_test-registerme-app'
-};
-
-config.db.details = {
-  host: '172.81.119.95',
-  port: 3306,
-  dialect: 'mysql'
-};
-
 // config.db = {
-//   user: 'root',
+//   user: 'areash5_peprah',
 //   password: 'digimas14',
-//   name: 'register-me'
+//   name: 'areash5_test-registerme-app'
 // };
 
 // config.db.details = {
-//   host: 'localhost',
+//   host: '172.81.119.95',
 //   port: 3306,
 //   dialect: 'mysql'
 // };
+
+config.db = {
+  user: 'root',
+  password: 'digimas14',
+  name: 'register-me'
+};
+
+config.db.details = {
+  host: 'localhost',
+  port: 3306,
+  dialect: 'mysql'
+};
 
 config.db.production = {
   url: 'postgres://lbewwfjc:5y1kaCk-JnnhXKAhm4jNXw7arsgxaf6V@baasu.db.elephantsql.com:5432/lbewwfjc',
