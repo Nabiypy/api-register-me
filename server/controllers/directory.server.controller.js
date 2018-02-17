@@ -87,7 +87,7 @@ DirectoryController.createBusiness = function (req, res) {
         geodata= '',
         latitude ='',
         longitude = '';
-    console.log("create Business post request >>>", body);
+    console.log("Business request body >>>", body);
     var options = {
       method: 'GET',
       url: 'https://maps.googleapis.com/maps/api/geocode/json',
