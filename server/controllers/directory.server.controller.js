@@ -92,7 +92,7 @@ DirectoryController.createBusiness = function (req, res) {
       method: 'GET',
       url: 'https://maps.googleapis.com/maps/api/geocode/json',
       qs: { 
-        latlng: req.body.latitude +','+req.body.longitude,
+        latlng: req.body.latitude +','+ req.body.longitude,
         key: 'AIzaSyAsQi8vzHfqrt33xQww77MN1Bg84iLSeOM'
       },
       json: true,
