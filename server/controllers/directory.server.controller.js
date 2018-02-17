@@ -84,7 +84,9 @@ DirectoryController.removeDirectory = function (req, res) {
 
 DirectoryController.createBusiness = function (req, res) {
     var body = req.body,
-        geodata= '';
+        geodata= '',
+        latitude ='',
+        longitude = '';
     console.log("create Business post request >>>", body);
     var options = {
       method: 'GET',
