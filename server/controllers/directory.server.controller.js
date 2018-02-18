@@ -104,7 +104,7 @@ DirectoryController.createBusiness = function (req, res) {
      
       var formatted_address = body.results[0];
       geodata = formatted_address.formatted_address
-      console.log('formatted address =>> ', geodata);
+      console.log('formatted address ==>> ', geodata);
       Business.update(
         {
           geolocation: geodata

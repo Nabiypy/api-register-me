@@ -20,7 +20,7 @@ config.db.details = {
 // config.db = {
 //   user: 'root',
 //   password: 'digimas14',
-//   name: 'register-me'
+//   name: 'areash5_test-registerme-app'
 // };
 
 // config.db.details = {
