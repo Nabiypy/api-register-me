@@ -34,7 +34,7 @@ AuthController.signUp = function (req, res) {
       });
     }).catch(function (error) {
       console.log(error);
-      res.status(403).json({ message: 'Username already exists!' });
+      res.status(403).json({ message: 'Username already exist!' });
     });
   }
 
