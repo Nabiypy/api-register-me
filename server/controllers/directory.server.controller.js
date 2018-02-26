@@ -88,66 +88,78 @@ DirectoryController.createBusiness = function (req, res) {
         latitude ='',
         longitude = '';
     console.log("Business request body >>>", body);
-    var options = {
-      method: 'GET',
-      url: 'https://maps.googleapis.com/maps/api/geocode/json',
-      qs: { 
-        latlng: req.body.latitude +','+ req.body.longitude,
-        key: 'AIzaSyAsQi8vzHfqrt33xQww77MN1Bg84iLSeOM'
-      },
-      json: true,
-   };
+    if (!req.body.latitude || !req.body.longitude) {
+      res.json({ message: 'Please provide latitude and a longitude' });
+    } else {
+       var options = {
+          method: 'GET',
+          url: 'https://maps.googleapis.com/maps/api/geocode/json',
+          qs: { 
+            latlng: req.body.latitude +','+ req.body.longitude,
+            key: 'AIzaSyAsQi8vzHfqrt33xQww77MN1Bg84iLSeOM'
+          },
+          json: true,
+       };
 
-    request(options, function(error, response, body) {
-      console.log('options', options);
-      if (error) throw new Error(error);
-     
-      var formatted_address = body.results[0];
-      geodata = formatted_address.formatted_address
-      console.log('formatted address ==>> ', geodata);
-      Business.update(
-        {
-          geolocation: geodata
-        }, {
-          where: {
-            officeName: {
-              $like: req.body.officeName
+        request(options, function(error, response, body) {
+          console.log('options', options);
+          if (error) throw new Error(error);
+         
+          var formatted_address = body.results[0];
+          geodata = formatted_address.formatted_address
+          console.log('formatted address ==>> ', geodata);
+          Business.update(
+            {
+              geolocation: geodata
+            }, {
+              where: {
+                officeName: {
+                  $like: req.body.officeName
+                }
+              }
             }
-          }
-        }
-      );
+          );
 
-   });
-
-    db.sync().then(function () {
-      var newPost = {
-        userId: req.body.userId,
-        findMeId: req.body.findMeId,
-        group: req.body.group,
-        directory: req.body.directory,
-        gravatar: req.body.gravatar,
-        officeName: req.body.officeName,
-        otherNames: req.body.otherNames,
-        gender: req.body.gender,
-        maritalStatus: req.body.maritalStatus,
-        mobile: req.body.mobile,
-        email: req.body.email,    
-        homeTown: req.body.location,      
-        position: req.body.position,
-        latitude: req.body.latitude,
-        longitude: req.body.longitude,
-        geolocation: geodata,
-        websiteUrl: req.body.websiteUrl,
-        fileUpload: req.body.fileUpload
-      };
-  
-      return Business.create(newPost).then(function () {
-        res.status(201).json({ message: 'Business created successfully' });
+       });
+        db.sync().then(function () {
+        var newPost = {
+          userId: req.body.userId,
+          findMeId: req.body.findMeId,
+          group: req.body.group,
+          directory: req.body.directory,
+          gravatar: req.body.gravatar,
+          officeName: req.body.officeName,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          middleName: req.body.middleName,
+          otherNames: req.body.otherNames,
+          dateOfBirth: req.body.dateOfBirth,
+          idNo: req.body.idNo,
+          mobile: req.body.mobile,
+          email: req.body.email,   
+          gender: req.body.gender,
+          street: req.body.location,
+          city: req.body.city,
+          state: req.body.state,
+          country: req.body.country,
+          maritalStatus: req.body.maritalStatus,
+          homeTown: req.body.location,      
+          position: req.body.position,
+          latitude: req.body.latitude,
+          longitude: req.body.longitude,
+          geolocation: geodata,
+          websiteUrl: req.body.websiteUrl,
+          fileUpload: req.body.fileUpload
+        };
+    
+        return Business.create(newPost).then(function () {
+          res.status(201).json({ message: 'Business created successfully' });
+        });
+      }).catch(function (error) {
+        console.log(error);
+        res.status(403).json({ message: 'an error occured saving Business' });
       });
-    }).catch(function (error) {
-      console.log(error);
-      res.status(403).json({ message: 'an error occured saving Business' });
-    });
+    }
   }
 // get all agents post
 
