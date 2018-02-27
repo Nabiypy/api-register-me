@@ -134,6 +134,7 @@ DirectoryController.createBusiness = function (req, res) {
           middleName: req.body.middleName,
           otherNames: req.body.otherNames,
           dateOfBirth: req.body.dateOfBirth,
+          idType: req.body.idType,
           idNo: req.body.idNo,
           mobile: req.body.mobile,
           email: req.body.email,   
@@ -157,7 +158,10 @@ DirectoryController.createBusiness = function (req, res) {
         });
       }).catch(function (error) {
         console.log(error);
-        res.status(403).json({ message: 'an error occured saving Business' });
+        res.status(403).json({ 
+          message: 'an error occured saving Business',
+          error: error 
+        });
       });
     }
   }

@@ -21,6 +21,7 @@ var modelDefinition = {
     lastName: { type: Sequelize.STRING },
     otherNames: { type: Sequelize.STRING },
     dateOfBirth: { type: Sequelize.STRING },
+    idType: { type: Sequelize.STRING },
     idNo: { type: Sequelize.STRING },
     email: { type: Sequelize.STRING },
     mobile: { type: Sequelize.STRING },
