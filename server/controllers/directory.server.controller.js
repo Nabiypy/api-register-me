@@ -136,6 +136,7 @@ DirectoryController.createBusiness = function (req, res) {
           dateOfBirth: req.body.dateOfBirth,
           idType: req.body.idType,
           idNo: req.body.idNo,
+          idPicture: req.body.idPicture,
           mobile: req.body.mobile,
           email: req.body.email,   
           gender: req.body.gender,

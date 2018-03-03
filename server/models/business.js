@@ -23,6 +23,7 @@ var modelDefinition = {
     dateOfBirth: { type: Sequelize.STRING },
     idType: { type: Sequelize.STRING },
     idNo: { type: Sequelize.STRING },
+    idPicture: { type: Sequelize.BLOB('long') },
     email: { type: Sequelize.STRING },
     mobile: { type: Sequelize.STRING },
     gender: { type: Sequelize.STRING },
